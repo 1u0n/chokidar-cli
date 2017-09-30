@@ -65,9 +65,10 @@ test/b.js
 
 ```chokidar '**/*.less' -c 'npm run build-less' --polling```
 
-**Pass the path and event details in to your custom command**
+**Pass the path, event and file name details in to your custom command**
 
 ```chokidar '**/*.less' -c 'if [ "{event}" = "change" ]; then npm run build-less -- {path}; fi;'```
+```chokidar '**/*.less' -c 'if [ "{event}" = "change" ]; then npm run build-less -- ./less/{file}; fi;'```
 
 **Detailed help**
 
@@ -84,7 +85,7 @@ Guide to globs: https://github.com/isaacs/node-glob#glob-primer
 Options:
   -c, --command           Command to run after each change. Needs to be
                           surrounded with quotes when command contains spaces.
-                          Instances of `{path}` or `{event}` within the command
+                          Instances of `{path}` , `{event}` or `{file}` within the command
                           will be replaced by the corresponding values from the
                           chokidar event.
   -d, --debounce          Debounce timeout in ms for executing command

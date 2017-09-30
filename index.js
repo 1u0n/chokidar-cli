@@ -154,10 +154,12 @@ function startWatching(opts) {
 
         // XXX: commands might be still run concurrently
         if (opts.command) {
+			var fileName = path.split('/').pop();
             debouncedRun(
                 opts.command
                     .replace(/\{path\}/ig, path)
                     .replace(/\{event\}/ig, event)
+					.replace(/\{file\}/ig, fileName)
             );
         }
     });
